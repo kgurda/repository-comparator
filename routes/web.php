@@ -11,6 +11,6 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return view('home');
-});
+$router->get('repositories/comparison',  [
+    'uses' => 'RepositoryController@compare'
+]);

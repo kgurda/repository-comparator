@@ -13,6 +13,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(
+            \App\Services\RepositoryDetailsProviderInterface::class,
+            \App\Services\GithubRepositoryDetailsProvider::class
+        );
+        $this->app->bind(
+            \App\Services\RepositoryComparatorInterface::class,
+            \App\Services\SimpleRepositoryComparator::class
+        );
+
     }
 }

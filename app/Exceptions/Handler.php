@@ -20,7 +20,7 @@ class Handler extends ExceptionHandler
         AuthorizationException::class,
         HttpException::class,
         ModelNotFoundException::class,
-        ValidationException::class,
+        ValidationException::class
     ];
 
     /**
@@ -45,6 +45,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof RepositoryNotFoundException) {
+            abort(404, $exception->getMessage());
+        }
         return parent::render($request, $exception);
     }
 }

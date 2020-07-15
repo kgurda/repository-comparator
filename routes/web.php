@@ -11,6 +11,9 @@
 |
 */
 
+$router->get('', function() {
+    return 'home';
+});
 $router->get('repositories/comparison',  [
     'uses' => 'RepositoryController@compare'
 ]);

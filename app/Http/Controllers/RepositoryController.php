@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\RepositoryNotFoundException;
 use App\Services\RepositoryService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class RepositoryController extends Controller
@@ -11,24 +11,27 @@ class RepositoryController extends Controller
     private $repositoryService;
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * RepositoryController constructor.
+     * @param RepositoryService $repositoryService
      */
     public function __construct(RepositoryService $repositoryService)
     {
         $this->repositoryService = $repositoryService;
     }
 
-    public function compare(Request $request)
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function compare(Request $request): JsonResponse
     {
         $data = $request->all();
-        $compare = $this->repositoryService->compareRepositories(
+        $result = $this->repositoryService->compareRepositories(
             $data['owner1'],
             $data['repo1'],
             $data['owner2'],
             $data['repo2']
         );
-        return $compare;
+        return response()->json($result, 200);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -46,7 +47,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if ($exception instanceof RepositoryNotFoundException) {
-            abort(404, $exception->getMessage());
+            abort(Response::HTTP_NOT_FOUND, $exception->getMessage());
         }
         return parent::render($request, $exception);
     }

@@ -33,8 +33,6 @@ class SimpleRepositoryComparatorTest extends TestCase
                     $this->assertEquals('draw', $datum['winner']);
                     break;
                 case 'latestReleaseDate':
-                    $this->assertEquals('2020-05-10 00:00:00.000000', $datum['repo1']->date);
-                    $this->assertEquals('2020-05-05 00:00:00.000000', $datum['repo2']->date);
                     $this->assertEquals('kgurda/repository-1', $datum['winner']);
                     break;
                 case 'openIssuesCount':

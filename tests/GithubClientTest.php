@@ -72,7 +72,7 @@ class GithubClientTest extends TestCase
     /**
      * @return void
      */
-    public function testIfOpenIssuesEndpointEndpointThrowsExceptionIfRepositoryDoesNotExist()
+    public function testIfOpenIssuesEndpointThrowsExceptionIfRepositoryDoesNotExist()
     {
         $owner = 'kgurda';
         $repo = 'repository-comparatorr';
@@ -96,7 +96,7 @@ class GithubClientTest extends TestCase
     /**
      * @return void
      */
-    public function testIfOpenPullRequestEndpointEndpointThrowsExceptionIfRepositoryDoesNotExist()
+    public function testIfOpenPullRequestEndpointThrowsExceptionIfRepositoryDoesNotExist()
     {
         $owner = 'kgurda';
         $repo = 'repository-comparatorr';
@@ -120,7 +120,7 @@ class GithubClientTest extends TestCase
     /**
      * @return void
      */
-    public function testIfClosedPullRequestEndpointEndpointThrowsExceptionIfRepositoryDoesNotExist()
+    public function testIfClosedPullRequestEndpointThrowsExceptionIfRepositoryDoesNotExist()
     {
         $owner = 'kgurda';
         $repo = 'repository-comparatorr';

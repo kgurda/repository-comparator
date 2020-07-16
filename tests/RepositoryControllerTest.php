@@ -19,8 +19,8 @@ class RepositoryControllerTest extends TestCase
      */
     public function testIfReturns404IfRepositoryDoesNotExist()
     {
-        $notExistedRepo = 'repository-comparator-not-exited';
-        $this->expectExceptionMessage("Github repository: $notExistedRepo not found");
-        $this->get("/repositories/comparison?owner1=kgurda&repo1=final_project&owner2=kgurda&repo2=$notExistedRepo");
+        $notExistingRepo = 'repository-comparator-not-exist';
+        $this->expectExceptionMessage("Github repository: $notExistingRepo not found");
+        $this->get("/repositories/comparison?owner1=kgurda&repo1=final_project&owner2=kgurda&repo2=$notExistingRepo");
     }
 }

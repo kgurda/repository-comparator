@@ -29,13 +29,13 @@ class GithubClient
     }
 
     /**
-     * @param $owner
-     * @param $repo
+     * @param string $owner
+     * @param string $repo
      * @return array
      * @throws GithubServiceUnavailableException
      * @throws RepositoryNotFoundException
      */
-    public function getBasicDetails($owner, $repo): array
+    public function getBasicDetails(string $owner, string $repo): array
     {
         try {
             $response = $this->client->get("/repos/$owner/$repo");
@@ -50,12 +50,12 @@ class GithubClient
     }
 
     /**
-     * @param $owner
-     * @param $repo
+     * @param string $owner
+     * @param string $repo
      * @return bool
      * @throws GithubServiceUnavailableException
      */
-    private function isReleaseExist($owner, $repo): bool
+    private function isReleaseExist(string $owner, string $repo): bool
     {
         try {
             $response = $this->client->get("/repos/$owner/$repo/releases");
@@ -66,12 +66,12 @@ class GithubClient
     }
 
     /**
-     * @param $owner
-     * @param $repo
+     * @param string $owner
+     * @param string $repo
      * @return \DateTime|null
      * @throws GithubServiceUnavailableException
      */
-    public function getLatestReleaseDate($owner, $repo): ?\DateTime
+    public function getLatestReleaseDate(string $owner, string $repo): ?\DateTime
     {
         if (self::isReleaseExist($owner, $repo)) {
             try {
@@ -86,12 +86,12 @@ class GithubClient
     }
 
     /**
-     * @param $owner
-     * @param $repo
+     * @param string $owner
+     * @param string $repo
      * @return array
      * @throws GithubServiceUnavailableException
      */
-    public function getOpenIssues($owner, $repo): array
+    public function getOpenIssues(string $owner, string $repo): array
     {
         try {
             $response = $this->client->get("/search/issues?q=+repo:$owner/$repo+state:open+type:issue");
@@ -102,12 +102,12 @@ class GithubClient
     }
 
     /**
-     * @param $owner
-     * @param $repo
+     * @param string $owner
+     * @param string $repo
      * @return array
      * @throws GithubServiceUnavailableException
      */
-    public function getOpenPullRequests($owner, $repo): array
+    public function getOpenPullRequests(string $owner, string $repo): array
     {
         try {
             $response = $this->client->get("/search/issues?q=+repo:$owner/$repo+state:open+type:pr");
@@ -118,12 +118,12 @@ class GithubClient
     }
 
     /**
-     * @param $owner
-     * @param $repo
+     * @param string $owner
+     * @param string $repo
      * @return array
      * @throws GithubServiceUnavailableException
      */
-    public function getClosedPullRequests($owner, $repo): array
+    public function getClosedPullRequests(string $owner, string $repo): array
     {
         try {
             $response = $this->client->get("/search/issues?q=+repo:$owner/$repo+state:closed+type:pr");

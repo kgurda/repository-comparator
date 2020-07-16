@@ -48,6 +48,8 @@ class Handler extends ExceptionHandler
     {
         if ($exception instanceof RepositoryNotFoundException) {
             abort(Response::HTTP_NOT_FOUND, $exception->getMessage());
+        } elseif ($exception instanceof GithubServiceUnavailableException) {
+            abort(Response::HTTP_SERVICE_UNAVAILABLE, $exception->getMessage());
         }
         return parent::render($request, $exception);
     }

@@ -4,15 +4,15 @@ namespace App;
 
 class RepositoryDetails
 {
-    public $owner;
-    public $repoName;
-    public $forksCount;
-    public $starsCount;
-    public $watchersCount;
-    public $openIssuesCount;
-    public $latestReleaseDate;
-    public $openPullRequestsCount;
-    public $closedPullRequestsCount;
+    private $owner;
+    private $repoName;
+    private $forksCount;
+    private $starsCount;
+    private $watchersCount;
+    private $openIssuesCount;
+    private $latestReleaseDate;
+    private $openPullRequestsCount;
+    private $closedPullRequestsCount;
 
     /**
      * RepositoryDetails constructor.
@@ -45,5 +45,10 @@ class RepositoryDetails
     public function getOwnerRepoName(): string
     {
         return $this->owner . '/' . $this->repoName;
+    }
+
+    public function getByCategory(string $category)
+    {
+        return $this->{$category};
     }
 }

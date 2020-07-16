@@ -21,8 +21,8 @@ class SimpleRepositoryComparator implements RepositoryComparatorInterface
         foreach ($categories as $key => $category) {
             $result['data'][] = [
                 'name' => $category,
-                'repo1' => $repositoryDetails1->{$category},
-                'repo2' => $repositoryDetails2->{$category},
+                'repo1' => $repositoryDetails1->getByCategory($category),
+                'repo2' => $repositoryDetails2->getByCategory($category),
                 'winner' => $this->getWinner($repositoryDetails1, $repositoryDetails2, $category)
             ];
         }
@@ -39,21 +39,21 @@ class SimpleRepositoryComparator implements RepositoryComparatorInterface
     {
         switch ($category) {
             case 'openIssuesCount':
-                if ($repositoryDetails1->{$category} < $repositoryDetails2->{$category}) {
+                if ($repositoryDetails1->getByCategory($category) < $repositoryDetails2->getByCategory($category)) {
                     return $repositoryDetails1->getOwnerRepoName();
-                } elseif ($repositoryDetails1->{$category} > $repositoryDetails2->{$category}) {
+                } elseif ($repositoryDetails1->getByCategory($category) > $repositoryDetails2->getByCategory($category)) {
                     return $repositoryDetails2->getOwnerRepoName();
                 } else {
                     return self::DRAW;
                 }
             default:
-            if ($repositoryDetails1->{$category} > $repositoryDetails2->{$category}) {
-                return $repositoryDetails1->getOwnerRepoName();
-            } elseif ($repositoryDetails1->{$category} < $repositoryDetails2->{$category}) {
-                return $repositoryDetails2->getOwnerRepoName();
-            } else {
-                return self::DRAW;
-            }
+                if ($repositoryDetails1->getByCategory($category) > $repositoryDetails2->getByCategory($category)) {
+                    return $repositoryDetails1->getOwnerRepoName();
+                } elseif ($repositoryDetails1->getByCategory($category) < $repositoryDetails2->getByCategory($category)) {
+                    return $repositoryDetails2->getOwnerRepoName();
+                } else {
+                    return self::DRAW;
+                }
         }
     }
 }
